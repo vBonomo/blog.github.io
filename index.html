@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div :class="['home-header', mods, currentBackground]" ref="screen">
+    <div class="home-header__background"></div>
+
+    <AppTopLine class="home-header__top-line" light/>
+
+    <div class="container">
+      <div class="row d-flex justify-content-center">
+        <div class="col-12">
+          <div class="home-header__content">
+            <!-- <img :src="baground" alt> -->
+
+            <!-- <pre>{{ citiesTranslate }}</pre> -->
+
+            <div>
+              <div class="d-block d-sm-none">
+                <h1 class="home-header__title" v-if="!city" v-html="$t(`${tPrefix}.titleMobile`)"></h1>
+                <h1
+                  class="home-header__title"
+                  v-else
+                  v-html="$t(`${tPrefix}.flightFrom.titleMobile`, { city })"
+                ></h1>
+              </div>
+
+              <div class="d-none d-sm-block">
+                <h1 class="home-header__title" v-if="!city" v-html="$t(`${tPrefix}.titleDecktop`)"></h1>
+
+                <template v-else>
+                  <h1
+                    class="home-header__title"
+                    v-html="$t(`${tPrefix}.flightFrom.titleDecktop`, { city })"
+                  ></h1>
+                </template>
+                <!-- <p>{{ $t(`${tPrefix}.flightFrom.description`) }}fff</p> -->
+              </div>
+
+              <p
+                class="home-header__description"
+                v-if="!city"
+                v-html="$t(`${tPrefix}.description`)"
+              ></p>
+
+              <p
+                class="home-header__description"
+                v-else
+              >{{ $t(`${tPrefix}.flightFrom.description`) }}</p>
+            </div>
+
+            <AppSearch
+              class="home-header__search"
+              transparent
+              :onlySingle="false"
+              :defaultCode="flight ? flight.city.code : null"
+            />
+
+            <!-- <div class="home-header__recomented-block">
+              <p
+                class="d-none d-sm-block home-header__other"
+                @click="$emit('scrollOffers')"
+              >{{ $t(`${tPrefix}.other`) }}</p>
+
+              <div class="home-header__scroll-down-container">
+                <img
+                  class="home-header__scroll-down"
+                  src="/img/root/footer/top.svg"
+                  @click="$emit('scrollOffers')"
+                >
+               
+              </div>
+            </div>-->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--[if IE]>
+      <img class="home-header__img" :src="require('~/static/img/root/main/header-reatange.png')" alt>
+    <![endif]-->
+
+
+    <!-- <img class="home-header__img" :src="require('~/static/img/root/main/header-reatange.png')" alt> -->
+  </div>
+</body>
+</html>
